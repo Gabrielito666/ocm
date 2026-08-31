@@ -1,0 +1,14 @@
+Source: ocm
+Section: utils
+Priority: optional
+Maintainer: Gabriel Antonio Farías Ravanal <galileo.fandango@gmail.com>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.2
+Homepage: https://github.com/your-username/ocm
+
+Package: ocm
+Architecture: all
+Depends: git, ${misc:Depends}
+Description: OpenCode Manager - manage multiple opencode configurations
+ OCM is a CLI tool to manage multiple opencode configurations.
+ Install, update, and switch between different opencode configs easily.

@@ -1,0 +1,3 @@
+bin/ocm usr/bin
+dist/bundle.js usr/lib/ocm
+completions/ocm usr/share/bash-completion/completions
