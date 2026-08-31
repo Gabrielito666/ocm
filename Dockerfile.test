@@ -1,0 +1,19 @@
+FROM node:20-slim
+
+RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
+
+RUN curl -fsSL https://opencode.ai/install | bash
+
+RUN npm install -g pnpm
+
+COPY dist/*.deb /tmp/
+RUN dpkg -i /tmp/*.deb || apt-get install -f -y
+
+COPY package.json /app/
+WORKDIR /app
+RUN pnpm i
+
+COPY src/ /app/src/
+COPY test/ /app/test/
+
+CMD ["node", "--test"]
