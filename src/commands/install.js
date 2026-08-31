@@ -119,6 +119,14 @@ class InstallCommand extends Command
 				const jsonName = await getOcmJsonName(tmpDir);
 				resolvedName = jsonName || getRepoName(url);
 				const destDir = path.join(configsDir, resolvedName);
+				
+				const destExists = await fs.access(destDir).then(() => true).catch(() => false);
+				if (destExists)
+				{
+					await fs.rm(tmpDir, { recursive: true, force: true });
+					return new Command.Message.Error(`Config ${resolvedName} already exists`);
+				}
+				
 				await fs.mkdir(destDir, { recursive: true });
 				await copyDir(tmpDir, destDir);
 				await fs.rm(tmpDir, { recursive: true, force: true });
@@ -128,12 +136,26 @@ class InstallCommand extends Command
 				const jsonName = await getOcmJsonName(source);
 				resolvedName = jsonName || path.basename(source);
 				const destDir = path.join(configsDir, resolvedName);
+				
+				const destExists = await fs.access(destDir).then(() => true).catch(() => false);
+				if (destExists)
+				{
+					return new Command.Message.Error(`Config ${resolvedName} already exists`);
+				}
+				
 				await copyDir(source, destDir);
 			}
 		}
 		else
 		{
 			const destDir = path.join(configsDir, resolvedName);
+			
+			const destExists = await fs.access(destDir).then(() => true).catch(() => false);
+			if (destExists)
+			{
+				return new Command.Message.Error(`Config ${resolvedName} already exists`);
+			}
+			
 			if (isRepo)
 			{
 				await cloneRepo(url, destDir, ref);

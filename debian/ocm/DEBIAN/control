@@ -2,7 +2,7 @@ Package: ocm
 Version: 0.1.0
 Architecture: all
 Maintainer: Gabriel Antonio Farías Ravanal <galileo.fandango@gmail.com>
-Installed-Size: 41
+Installed-Size: 42
 Depends: git
 Section: utils
 Priority: optional
