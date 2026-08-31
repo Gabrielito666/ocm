@@ -37,12 +37,12 @@ fi
 export OCM_CONFIGS_DIR="${OCM_CONFIGS_DIR:-$HOME/.local/share/ocm}"
 export OPENCODE_CONFIG_DIR="${OPENCODE_CONFIG_DIR:-$HOME/.config/opencode}"
 
-exec node /opt/ocm/bundle.js "$@"
+exec node /usr/lib/ocm/bundle.js "$@"
 ```
 
 ### Bundle
 - Se genera con esbuild como bundle autocontenido
-- Se instala en /opt/ocm/bundle.js
+- Se instala en /usr/lib/ocm/bundle.js
 - No depende de node_modules en producción
 
 ### Estrategia de testing
