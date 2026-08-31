@@ -1,6 +1,8 @@
 {
 	"dependencies": {
-		"esbuild": "^0.28.2",
 		"lapiz-cli": "^1.0.0"
+	},
+	"devDependencies": {
+		"esbuild": "^0.28.2"
 	}
 }

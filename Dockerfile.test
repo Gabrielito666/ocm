@@ -9,11 +9,11 @@ RUN npm install -g pnpm
 COPY dist/*.deb /tmp/
 RUN dpkg -i /tmp/*.deb || apt-get install -f -y
 
-COPY package.json /app/
-WORKDIR /app
-RUN pnpm i
+RUN mkdir -p /app && cd /app && pnpm i lapiz-cli
 
 COPY src/ /app/src/
 COPY test/ /app/test/
+
+WORKDIR /app
 
 CMD ["node", "--test"]

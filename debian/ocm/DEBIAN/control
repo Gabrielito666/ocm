@@ -1,0 +1,12 @@
+Package: ocm
+Version: 0.1.0
+Architecture: all
+Maintainer: Gabriel Antonio Farías Ravanal <galileo.fandango@gmail.com>
+Installed-Size: 41
+Depends: git
+Section: utils
+Priority: optional
+Homepage: https://github.com/your-username/ocm
+Description: OpenCode Manager - manage multiple opencode configurations
+ OCM is a CLI tool to manage multiple opencode configurations.
+ Install, update, and switch between different opencode configs easily.

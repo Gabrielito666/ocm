@@ -1,0 +1,16 @@
+_ocm_completions() {
+    local cur prev commands
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+
+    commands="install update rename remove list current use worklink create-empty"
+
+    if [[ ${COMP_CWORD} -eq 1 ]]; then
+        COMPREPLY=( $(compgen -W "${commands}" -- ${cur}) )
+    fi
+
+    return 0
+}
+
+complete -F _ocm_completions ocm
