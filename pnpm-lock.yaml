@@ -1,0 +1,22 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      lapiz-cli:
+        specifier: ^1.0.0
+        version: 1.0.0
+
+packages:
+
+  lapiz-cli@1.0.0:
+    resolution: {integrity: sha512-eEaHxXJWt8FrRLfG6y3d1+pGVZ/j3E51SoJAtjUvvsHHKZSOwakmXkd106iB77VJ3F7HsHXzStLRKl/CXPX0ag==}
+
+snapshots:
+
+  lapiz-cli@1.0.0: {}
