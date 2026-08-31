@@ -38,9 +38,9 @@ describe('current', () =>
 	{
 		const { stdout } = await runOcm(['current'], testEnv);
 		assert.ok(
-			stdout.includes('no') ||
-			stdout.includes('none') ||
-			stdout.includes('not set') ||
+			stdout.toLowerCase().includes('no active') ||
+			stdout.toLowerCase().includes('none') ||
+			stdout.toLowerCase().includes('not set') ||
 			stdout.trim() === ''
 		);
 	});

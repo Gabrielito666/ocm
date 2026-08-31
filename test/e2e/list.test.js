@@ -29,7 +29,7 @@ describe('list', () =>
 	it('should show empty message when no configs installed', async () =>
 	{
 		const { stdout } = await runOcm(['list'], testEnv);
-		assert.ok(stdout.trim() === '' || stdout.includes('no configs') || stdout.includes('no hay'));
+		assert.ok(stdout.toLowerCase().includes('no configs'));
 	});
 
 	it('should show config without asterisk when not active', async () =>
