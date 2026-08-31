@@ -8,12 +8,13 @@ importers:
 
   .:
     dependencies:
+      lapiz-cli:
+        specifier: ^1.1.0
+        version: 1.1.0
+    devDependencies:
       esbuild:
         specifier: ^0.28.2
         version: 0.28.2
-      lapiz-cli:
-        specifier: ^1.0.0
-        version: 1.0.0
 
 packages:
 
@@ -178,8 +179,8 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  lapiz-cli@1.0.0:
-    resolution: {integrity: sha512-eEaHxXJWt8FrRLfG6y3d1+pGVZ/j3E51SoJAtjUvvsHHKZSOwakmXkd106iB77VJ3F7HsHXzStLRKl/CXPX0ag==}
+  lapiz-cli@1.1.0:
+    resolution: {integrity: sha512-oaAV1ORW3pIPZdArX030Pn3/THqXf4QEA72agOWQUl6GkeiwB9W/GVUXvQGIUuB0sk3Vhr3IH2bYlAAHB6vbrg==}
 
 snapshots:
 
@@ -290,4 +291,4 @@ snapshots:
       '@esbuild/win32-ia32': 0.28.2
       '@esbuild/win32-x64': 0.28.2
 
-  lapiz-cli@1.0.0: {}
+  lapiz-cli@1.1.0: {}

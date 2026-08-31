@@ -51,6 +51,12 @@ exec node /usr/lib/ocm/bundle.js "$@"
 - **Contenedor**: un solo contenedor Docker ejecuta todos los tests
 - **Aislamiento**: el wrapper respeta variables de entorno, permitiendo tests aislados si es necesario
 
+### Tests unitarios y de integración
+- **Unit**: solo testean `parseArgs()` (lógica pura de parseo de argumentos)
+- **Integration**: testean `run()` con filesystem real en directorio temporal
+- **Decisión**: no se mockean dependencias en tests unitarios porque `mock.module()` no existe en Node.js test runner, y no queremos refactorizar los comandos para inyección de dependencias
+- **Cobertura**: unit tests cubren parseo de argumentos, integration tests cubren lógica de negocio con I/O real
+
 ## Test
 
 ### install

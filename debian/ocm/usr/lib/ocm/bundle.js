@@ -7,9 +7,9 @@ var __commonJS = (cb, mod) => function __require() {
   }
 };
 
-// node_modules/.pnpm/lapiz-cli@1.0.0/node_modules/lapiz-cli/lib/message/index.js
+// node_modules/.pnpm/lapiz-cli@1.1.0/node_modules/lapiz-cli/lib/message/index.js
 var require_message = __commonJS({
-  "node_modules/.pnpm/lapiz-cli@1.0.0/node_modules/lapiz-cli/lib/message/index.js"(exports2, module2) {
+  "node_modules/.pnpm/lapiz-cli@1.1.0/node_modules/lapiz-cli/lib/message/index.js"(exports2, module2) {
     var RESET = "\x1B[0m";
     var BRIGHT_RED = "\x1B[91m";
     var BRIGHT_GREEN = "\x1B[92m";
@@ -61,9 +61,9 @@ var require_message = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lapiz-cli@1.0.0/node_modules/lapiz-cli/lib/command/index.js
+// node_modules/.pnpm/lapiz-cli@1.1.0/node_modules/lapiz-cli/lib/command/index.js
 var require_command = __commonJS({
-  "node_modules/.pnpm/lapiz-cli@1.0.0/node_modules/lapiz-cli/lib/command/index.js"(exports2, module2) {
+  "node_modules/.pnpm/lapiz-cli@1.1.0/node_modules/lapiz-cli/lib/command/index.js"(exports2, module2) {
     var Message = require_message();
     var Command = class {
       static Message = Message;
@@ -99,9 +99,9 @@ var require_command = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lapiz-cli@1.0.0/node_modules/lapiz-cli/lib/default-help-command/index.js
+// node_modules/.pnpm/lapiz-cli@1.1.0/node_modules/lapiz-cli/lib/default-help-command/index.js
 var require_default_help_command = __commonJS({
-  "node_modules/.pnpm/lapiz-cli@1.0.0/node_modules/lapiz-cli/lib/default-help-command/index.js"(exports2, module2) {
+  "node_modules/.pnpm/lapiz-cli@1.1.0/node_modules/lapiz-cli/lib/default-help-command/index.js"(exports2, module2) {
     var Command = require_command();
     var Message = require_message();
     var centerString = (width, text) => text.padStart(Math.floor(text.length + (width - text.length) / 2)).padEnd(width);
@@ -138,12 +138,16 @@ ${repoTextBox}`);
   }
 });
 
-// node_modules/.pnpm/lapiz-cli@1.0.0/node_modules/lapiz-cli/lib/program/index.js
+// node_modules/.pnpm/lapiz-cli@1.1.0/node_modules/lapiz-cli/lib/program/index.js
 var require_program = __commonJS({
-  "node_modules/.pnpm/lapiz-cli@1.0.0/node_modules/lapiz-cli/lib/program/index.js"(exports2, module2) {
+  "node_modules/.pnpm/lapiz-cli@1.1.0/node_modules/lapiz-cli/lib/program/index.js"(exports2, module2) {
     var Message = require_message();
     var DefaultHelpCommand = require_default_help_command();
     var Program2 = class {
+      /**
+       * @type {ErrorHandler}
+       */
+      #errorHandler = (err) => new Message.Error(`Unexpected Error: ${err.message}`);
       /**
        * @param {string} programName
        * @param {string} repoLink
@@ -164,20 +168,47 @@ var require_program = __commonJS({
           }
         }
       }
+      /**
+       * @param {ErrorHandler} handler
+       */
+      attachErrorHandler(handler) {
+        this.#errorHandler = handler;
+      }
       async run() {
-        const command = this.commandsMap.get(process.argv[2]);
-        if (!command) {
-          new Message.Error("This is not a valid command. Please check out the documentation.").log();
-          return;
-        }
-        const args = command.parseArgs(process.argv.slice(3));
-        if (args instanceof Message) {
-          args.log();
+        try {
+          const command = this.commandsMap.get(process.argv[2]);
+          if (!command) {
+            new Message.Error("This is not a valid command. Please check out the documentation.").log();
+            process.exitCode = 1;
+            return void 0;
+          }
+          const args = command.parseArgs(process.argv.slice(3));
+          if (args instanceof Message.Error) {
+            process.exitCode = 1;
+          }
+          if (args instanceof Message) {
+            args.log();
+            return void 0;
+          }
+          const result = await command.run(args);
+          if (result instanceof Message.Error) {
+            process.exitCode = 1;
+          }
+          if (result instanceof Message) {
+            return result.log();
+          }
+          return void 0;
+        } catch (err) {
+          const error = err instanceof Error ? err : new Error(String(err));
+          const handleResult = await this.#errorHandler(error);
+          if (handleResult instanceof Message.Error) {
+            process.exitCode = 1;
+          }
+          if (handleResult instanceof Message) {
+            handleResult.log();
+          }
           return void 0;
         }
-        const result = await command.run(args);
-        if (result instanceof Message) return result.log();
-        return void 0;
       }
     };
     module2.exports = Program2;
