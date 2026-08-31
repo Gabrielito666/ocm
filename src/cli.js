@@ -17,7 +17,7 @@ const CreateEmptyCommand = require('./commands/create-empty');
 
 const cli = new Program(
 	'ocm',
-	'https://github.com/your-username/ocm',
+	'https://github.com/Gabrielito666/ocm',
 	new InstallCommand(),
 	new UpdateCommand(),
 	new RenameCommand(),
