@@ -102,7 +102,6 @@ fi
 
 # Crear release
 gh release create "v$VERSION" "$DEB_FILE" \
-    --repo "Gabrielito666/ocm" \
     --title "v$VERSION" \
     --notes-from-tag
 
