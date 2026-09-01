@@ -1,4 +1,30 @@
 {
+	"name": "ocm",
+	"version": "0.1.0",
+	"description": "OpenCode Manager - Configuration manager for OpenCode",
+	"author": {
+		"name": "Gabriel Antonio Farías Ravanal",
+		"email": "galileo.fandango@gmail.com"
+	},
+	"license": "ISC",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Gabrielito666/ocm.git"
+	},
+	"homepage": "https://github.com/Gabrielito666/ocm#readme",
+	"bugs": {
+		"url": "https://github.com/Gabrielito666/ocm/issues"
+	},
+	"keywords": [
+		"opencode",
+		"config-manager",
+		"cli",
+		"dotfiles"
+	],
+	"type": "commonjs",
+	"engines": {
+		"node": ">=18.0.0"
+	},
 	"dependencies": {
 		"lapiz-cli": "^1.1.0"
 	},
