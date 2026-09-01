@@ -84,6 +84,9 @@ make build-debian
 log "Ejecutando tests..."
 make test
 
+log "Regenerando paquete Debian (tests hacen clean)..."
+make build-debian
+
 log "✓ Build y tests exitosos"
 
 # ============================================
