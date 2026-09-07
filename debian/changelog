@@ -1,3 +1,9 @@
+ocm (0.1.1) unstable; urgency=medium
+
+  * Fix: list command now shows backup directories.
+
+ -- Gabriel Antonio Farías Ravanal <galileo.fandango@gmail.com>  Mon, 07 Sep 2026 11:00:00 -0300
+
 ocm (0.1.0) unstable; urgency=medium
 
   * Initial release.
