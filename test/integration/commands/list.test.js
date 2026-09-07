@@ -71,4 +71,15 @@ describe('list integration', () =>
 
 		assert.ok(result.text.toLowerCase().includes('no configs'));
 	});
+
+	it('should show backup directories like any config', async () =>
+	{
+		const backupName = 'backup-2024-01-01_12-00-00';
+		await fs.mkdir(path.join(configsDir, backupName), { recursive: true });
+
+		const listCmd = new ListCommand();
+		const result = await listCmd.run(listCmd.parseArgs());
+
+		assert.ok(result.text.includes(backupName));
+	});
 });

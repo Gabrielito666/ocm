@@ -86,4 +86,21 @@ describe('use integration', () =>
 		const backupContent = await fs.readFile(path.join(configsDir, backupDir, 'test-file'), 'utf8');
 		assert.strictEqual(backupContent, 'test');
 	});
+
+	it('should use backup directory without creating redundant backup', async () =>
+	{
+		const backupName = 'backup-2024-01-01_12-00-00';
+		await fs.mkdir(path.join(configsDir, backupName), { recursive: true });
+
+		const backupsBefore = (await fs.readdir(configsDir)).filter(n => n.startsWith('backup-'));
+
+		const useCmd = new UseCommand();
+		await useCmd.run(useCmd.parseArgs([backupName]));
+
+		const target = await fs.readlink(opencodeDir);
+		assert.ok(target.includes(backupName));
+
+		const backupsAfter = (await fs.readdir(configsDir)).filter(n => n.startsWith('backup-'));
+		assert.strictEqual(backupsAfter.length, backupsBefore.length);
+	});
 });
