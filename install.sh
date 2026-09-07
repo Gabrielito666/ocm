@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-OCM_VERSION="0.1.0"
-OCM_DEB_URL="https://github.com/Gabrielito666/ocm/releases/download/v0.1.0/ocm_0.1.0_all.deb"
+OCM_VERSION="0.1.1"
+OCM_DEB_URL="https://github.com/Gabrielito666/ocm/releases/download/v0.1.1/ocm_0.1.1_all.deb"
 
 echo "Installing OCM v${OCM_VERSION}..."
 
