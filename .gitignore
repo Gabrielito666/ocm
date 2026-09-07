@@ -1,3 +1,7 @@
 node_modules
 dist
 debian/.debhelper
+debian/ocm/
+debian/files
+debian/debhelper-build-stamp
+debian/*.substvars
