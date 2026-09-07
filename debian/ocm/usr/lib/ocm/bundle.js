@@ -517,11 +517,10 @@ var require_list = __commonJS({
           activeConfig = path.basename(target);
         }
         const configs = await fs.readdir(configsDir).catch(() => []);
-        const filtered = configs.filter((name) => !name.startsWith("backup-"));
-        if (filtered.length === 0) {
+        if (configs.length === 0) {
           return new Command.Message("No configs installed");
         }
-        const lines = filtered.map((name) => {
+        const lines = configs.map((name) => {
           if (name === activeConfig) {
             return `${GREEN}* ${name}${RESET}`;
           }
